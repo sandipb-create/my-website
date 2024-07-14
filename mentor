@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section h2, .form-section h3, .form-section h4 {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        .form-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .form-section table, .form-section th, .form-section td {
+            border: 1px solid #ccc;
+        }
+        .form-section th, .form-section td {
+            padding: 10px;
+            text-align: left;
+        }
+        .form-section input, .form-section select, .form-section textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .save-button {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<h1>Student Information Form</h1>
+
+<div class="form-section" id="PART-A">
+    <h2>PART-A : BASIC INFORMATION</h2>
+    <table>
+        <tr>
+            <td>Roll Number:</td>
+            <td><input type="text" name="roll_number"></td>
+        </tr>
+        <tr>
+            <td>Name of the Student:</td>
+            <td><input type="text" name="student_name"></td>
+        </tr>
+        <tr>
+            <td>Date of Birth:</td>
+            <td><input type="date" name="dob"></td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td>
+                <select name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Caste/Category:</td>
+            <td><input type="text" name="caste_category"></td>
+        </tr>
+        <tr>
+            <td>Blood Group:</td>
+            <td><input type="text" name="blood_group"></td>
+        </tr>
+        <tr>
+            <td>Email ID:</td>
+            <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <td>Mobile Number:</td>
+            <td><input type="text" name="mobile_number"></td>
+        </tr>
+        <tr>
+            <td>Aadhaar No:</td>
+            <td><input type="text" name="aadhaar_no"></td>
+        </tr>
+        <tr>
+            <td>SSC (10th): GPA/Marks:</td>
+            <td><input type="text" name="ssc_marks"></td>
+        </tr>
+        <tr>
+            <td>Inter/Diploma: GPA/Marks:</td>
+            <td><input type="text" name="inter_marks"></td>
+        </tr>
+        <tr>
+            <td>Rank:</td>
+            <td><input type="text" name="rank"></td>
+        </tr>
+        <tr>
+            <td>Hosteller/Day Scholar:</td>
+            <td>
+                <select name="hostel_day_scholar">
+                    <option value="college_hostel">Staying in College Hostel</option>
+                    <option value="private_room">Private Room</option>
+                    <option value="day_scholar">Day Scholar</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Name of the Father:</td>
+            <td><input type="text" name="father_name"></td>
+        </tr>
+        <tr>
+            <td>Occupation:</td>
+            <td><input type="text" name="father_occupation"></td>
+        </tr>
+        <tr>
+            <td>Mobile No:</td>
+            <td><input type="text" name="father_mobile"></td>
+        </tr>
+        <tr>
+            <td>Email ID:</td>
+            <td><input type="email" name="father_email"></td>
+        </tr>
+        <tr>
+            <td>Name of the Mother:</td>
+            <td><input type="text" name="mother_name"></td>
+        </tr>
+        <tr>
+            <td>Occupation:</td>
+            <td><input type="text" name="mother_occupation"></td>
+        </tr>
+        <tr>
+            <td>Mobile No:</td>
+            <td><input type="text" name="mother_mobile"></td>
+        </tr>
+        <tr>
+            <td>Brother & Sister Info:</td>
+            <td><textarea name="siblings_info"></textarea></td>
+        </tr>
+        <tr>
+            <td>Present Address (Student):</td>
+            <td><textarea name="present_address"></textarea></td>
+        </tr>
+        <tr>
+            <td>Permanent Address (Parent):</td>
+            <td><textarea name="permanent_address"></textarea></td>
+        </tr>
+    </table>
+    <button class="save-button" onclick="saveToPDF('PART-A')">Save and Convert to PDF</button>
+</div>
+
+<div class="form-section" id="PART-B">
+    <h2>PART-B : OVERALL DETAILS</h2>
+    <h3>Sem wise Attendance and Academic Performance:</h3>
+    <table>
+        <tr>
+            <th>Sem</th>
+            <th>% of Attendance</th>
+            <th>SGPA</th>
+            <th>CGPA</th>
+            <th>Credits Obtained</th>
+            <th>Backlog Subjects</th>
+            <th>No.</th>
+            <th>Subject Names</th>
+        </tr>
+        <tr>
+            <td>
+                <select name="sem1">
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    <option value="5">V</option>
+                    <option value="6">VI</option>
+                    <option value="7">VII</option>
+                    <option value="8">VIII</option>
+                </select>
+            </td>
+            <td><input type="text" name="sem1_attendance"></td>
+            <td><input type="text" name="sem1_sgpa"></td>
+            <td><input type="text" name="sem1_cgpa"></td>
+            <td><input type="text" name="sem1_credits"></td>
+            <td><input type="text" name="sem1_backlog_subjects_no"></td>
+            <td colspan="2"><input type="text" name="sem1_backlog_subjects"></td>
+        </tr>
+        <!-- Repeat for all other semesters -->
+        <tr>
+            <td>
+                <select name="sem2">
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    <option value="5">V</option>
+                    <option value="6">VI</option>
+                    <option value="7">VII</option>
+                    <option value="8">VIII</option>
+                </select>
+            </td>
+            <td><input type="text" name="sem2_attendance"></td>
+            <td><input type="text" name="sem2_sgpa"></td>
+            <td><input type="text" name="sem2_cgpa"></td>
+            <td><input type="text" name="sem2_credits"></td>
+            <td><input type="text" name="sem2_backlog_subjects_no"></td>
+            <td colspan="2"><input type="text" name="sem2_backlog_subjects"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+
+    <h3>Higher Education Information:</h3>
+    <table>
+        <tr>
+            <th>Competitive Exams</th>
+            <th>H.T.No.</th>
+            <th>Score / Rank</th>
+        </tr>
+        <tr>
+            <td>GATE</td>
+            <td><input type="text" name="gate_htno"></td>
+            <td><input type="text" name="gate_score"></td>
+        </tr>
+        <tr>
+            <td>GRE/ILETS</td>
+            <td><input type="text" name="gre_htno"></td>
+            <td><input type="text" name="gre_score"></td>
+        </tr>
+        <tr>
+            <td>CAT/MAT</td>
+            <td><input type="text" name="cat_htno"></td>
+            <td><input type="text" name="cat_score"></td>
+        </tr>
+        <tr>
+            <td>Others</td>
+            <td><input type="text" name="other_exam_htno"></td>
+            <td><input type="text" name="other_exam_score"></td>
+        </tr>
+    </table>
+
+    <h3>Track Record of Placements:</h3>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Company/Organization</th>
+            <th>Qualified in Written Test/ TR/MR/GD/HR</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="placement_company1"></td>
+            <td><input type="text" name="placement_qualified1"></td>
+            <td><input type="text" name="placement_result1"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+
+    <h3>Employment Information:</h3>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Company/Organization</th>
+            <th>During Study(On/Off Campus)/After Graduation</th>
+            <th>Package</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="employment_company1"></td>
+            <td><input type="text" name="employment_during1"></td>
+            <td><input type="text" name="employment_package1"></td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </table>
+
+    <h3>Additional Information</h3>
+    <table>
+        <tr>
+            <td>Year of Admission:</td>
+            <td><input type="text" name="year_of_admission"></td>
+        </tr>
+        <tr>
+            <td>Year of Pass:</td>
+            <td><input type="text" name="year_of_pass"></td>
+        </tr>
+        <tr>
+            <td>Award of Class:</td>
+            <td>
+                <select name="award_of_class">
+                    <option value="first_class_distinction">First Class with Distinction</option>
+                    <option value="first_class">First Class</option>
+                    <option value="second_class">Second Class</option>
+                    <option value="pass_class">Pass Class</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>CGPA:</td>
+            <td><input type="text" name="cgpa"></td>
+        </tr>
+        <tr>
+            <td>Conduct:</td>
+            <td>
+                <select name="conduct">
+                    <option value="excellent">Excellent</option>
+                    <option value="very_good">Very Good</option>
+                    <option value="good">Good</option>
+                    <option value="satisfactory">Satisfactory</option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <button class="save-button" onclick="saveToPDF('PART-B')">Save and Convert to PDF</button>
+</div>
+
+<div class="form-section" id="PART-C">
+    <h2>PART-C : ACADEMIC PERFORMANCE AND REGULARITY</h2>
+    <h3>SEMESTER – I/II/III/IV/V/VI/VII/VIII</h3>
+    <h4>Academic Performance</h4>
+    <table>
+        <tr>
+            <th>Semester</th>
+            <td>
+                <select name="semester">
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    <option value="5">V</option>
+                    <option value="6">VI</option>
+                    <option value="7">VII</option>
+                    <option value="8">VIII</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>S.No.</th>
+            <th>Name of the Course</th>
+            <th>I-Mid (20)</th>
+            <th>I-Quiz (10)</th>
+            <th>II-Mid (20)</th>
+            <th>II-Quiz (10)</th>
+            <th>Assn (5)</th>
+            <th>Attn (5)</th>
+            <th>CIE (40)</th>
+            <th>Final Grades</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="course_name1"></td>
+            <td><input type="text" name="course_imid1"></td>
+            <td><input type="text" name="course_iquiz1"></td>
+            <td><input type="text" name="course_iimid1"></td>
+            <td><input type="text" name="course_iiquiz1"></td>
+            <td><input type="text" name="course_assn1"></td>
+            <td><input type="text" name="course_attn1"></td>
+            <td><input type="text" name="course_cie1"></td>
+            <td><input type="text" name="course_final1"></td>
+        </tr>
+        <!-- Repeat rows as needed -->
+    </table>
+
+    <h4>Monthly Attendance</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Overall % of Attendance</th>
+            <th>Inform to Student / Signature</th>
+            <th>Inform to Parent / Signature</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="attendance_date1"></td>
+            <td><input type="text" name="attendance_overall1"></td>
+            <td><input type="text" name="attendance_student_sig1"></td>
+            <td><input type="text" name="attendance_parent_sig1"></td>
+        </tr>
+        <!-- Repeat rows as needed -->
+    </table>
+
+    <h4>Participation in Symposia/Seminars/Workshops/Sports/Games/NSS/NCC/Yoga etc</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Event/Activity</th>
+            <th>Organized By</th>
+            <th>Outcome/Result</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="event_date1"></td>
+            <td><input type="text" name="event_activity1"></td>
+            <td><input type="text" name="event_organized_by1"></td>
+            <td><input type="text" name="event_outcome1"></td>
+        </tr>
+        <!-- Repeat rows as needed -->
+    </table>
+
+    <h4>Achievements/Awards</h4>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="text" name="achievement_type1"></td>
+            <td><input type="text" name="achievement_description1"></td>
+        </tr>
+        <!-- Repeat rows as needed -->
+    </table>
+
+    <h4>Counseling Report</h4>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Parameter</th>
+            <th>Suggestions by Mentor</th>
+            <th>Signature’s of Student</th>
+            <th>Signature’s of Parent</th>
+            <th>Signature’s of Mentor</th>
+        </tr>
+        <tr>
+            <td><input type="date" name="counseling_date1"></td>
+            <td><input type="text" name="counseling_parameter1"></td>
+            <td><input type="text" name="counseling_suggestions1"></td>
+            <td><input type="text" name="counseling_student_sig1"></td>
+            <td><input type="text" name="counseling_parent_sig1"></td>
+            <td><input type="text" name="counseling_mentor_sig1"></td>
+        </tr>
+        <!-- Repeat rows as needed -->
+    </table>
+    <button class="save-button" onclick="saveToPDF('PART-C')">Save and Convert to PDF</button>
+</div>
+
+<script>
+    function saveToPDF(part) {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+
+        const elementHTML = document.getElementById(part).outerHTML;
+        pdf.html(elementHTML, {
+            callback: function (pdf) {
+                pdf.save(part + ".pdf");
+            },
+            x: 10,
+            y: 10
+        });
+    }
+</script>
+
+</body>
+</html>
